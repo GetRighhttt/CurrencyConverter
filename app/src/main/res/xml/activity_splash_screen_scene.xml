@@ -51,8 +51,8 @@
         <Constraint
             android:id="@+id/yellow_graphic_pic"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"

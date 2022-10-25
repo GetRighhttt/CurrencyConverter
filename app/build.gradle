@@ -49,8 +49,8 @@ dependencies {
     /*
     Dependency injection dependencies - Hilt.
      */
-    implementation("com.google.dagger:hilt-android:2.42")
-    kapt("com.google.dagger:hilt-android-compiler:2.42")
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     // Navigation - safe args
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'

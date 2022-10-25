@@ -8,7 +8,7 @@
         motion:duration="1000"
         motion:autoTransition="animateToEnd"
         motion:staggered=".55">
-        <KeyFrameSet></KeyFrameSet>
+        <KeyFrameSet />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

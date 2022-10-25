@@ -1,7 +1,8 @@
-package com.example.currencyconverterapp
+package com.example.currencyconverterapp.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.currencyconverterapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

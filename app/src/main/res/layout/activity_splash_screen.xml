@@ -8,7 +8,7 @@
     android:id="@+id/motion_layout"
     app:layoutDescription="@xml/activity_splash_screen_scene"
     android:background="@color/black"
-    tools:context=".SplashScreenActivity">
+    tools:context=".presentation.view.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/yellow_background"

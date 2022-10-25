@@ -1,4 +1,4 @@
-package com.example.currencyconverterapp
+package com.example.currencyconverterapp.presentation.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Window
 import android.view.WindowManager
-import androidx.constraintlayout.motion.widget.MotionLayout
 import com.example.currencyconverterapp.databinding.ActivitySplashScreenBinding
-import kotlinx.coroutines.delay
 
 @SuppressLint("CustomSplashScreen")
 @Suppress("Deprecation")

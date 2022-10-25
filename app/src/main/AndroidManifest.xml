@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CurrencyConverterApp"
         tools:targetApi="31">
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".presentation.view.SplashScreenActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.view.MainActivity"
             android:exported="true">
         </activity>
     </application>

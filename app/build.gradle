@@ -4,6 +4,8 @@ plugins {
     id 'androidx.navigation.safeargs' // navigation
     id 'kotlin-parcelize' // parsing data easily
     id 'kotlin-kapt'
+    id("dagger.hilt.android.plugin") // parsing data easily
+
 }
 
 android {
@@ -15,7 +17,8 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        buildConfigField("String","API_KEY",MY_KEY)
+        buildConfigField("String","BASE_URL",BASE_URL)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,6 +45,12 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment:2.5.2'
     ext.lifecycle_version = "2.5.0-rc02"
+
+    /*
+    Dependency injection dependencies - Hilt.
+     */
+    implementation("com.google.dagger:hilt-android:2.42")
+    kapt("com.google.dagger:hilt-android-compiler:2.42")
 
     // Navigation - safe args
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'

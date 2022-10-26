@@ -9,9 +9,9 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("/latest")
+    @GET("/exchange_rates/latest")
     suspend fun getRates(
         @Query("base") base: String,
-        @Header("api-key") apiKey: String = BuildConfig.API_KEY
+        @Query("apikey") apiKey: String = BuildConfig.API_KEY
     ) : Response<CurrencyResponse>
 }

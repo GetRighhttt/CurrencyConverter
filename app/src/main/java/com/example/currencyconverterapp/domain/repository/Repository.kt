@@ -7,5 +7,5 @@ import com.example.currencyconverterapp.domain.util.Resource
 Serves as layer between data sources and view model.
  */
 interface Repository {
-    suspend fun getRates(base: String) : Resource<CurrencyResponse>
+    suspend fun getRates(base: String, apikey: String) : Resource<CurrencyResponse>
 }

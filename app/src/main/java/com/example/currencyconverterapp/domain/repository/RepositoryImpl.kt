@@ -15,7 +15,7 @@ class RepositoryImpl @Inject constructor(
     /*
     Method to get all the rates and check the state of the request
      */
-    override suspend fun getRates(base: String): Resource<CurrencyResponse> {
+    override suspend fun getRates(base: String, apikey: String): Resource<CurrencyResponse> {
         return try {
              val response = apiService.getRates(base, BuildConfig.API_KEY)
             val result = response.body()

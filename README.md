@@ -1,2 +1,3 @@
 # CurrencyConverter
-An android currency converter application using Kotlin!
+
+<p>A currency converted application incorporating

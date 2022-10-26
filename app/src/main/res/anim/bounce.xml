@@ -4,9 +4,9 @@
     android:interpolator="@android:anim/bounce_interpolator">
 
     <translate
-        android:duration="1000"
+        android:duration="800"
         android:fromXDelta="0"
-        android:fromYDelta="500"
+        android:fromYDelta="-500"
         android:toXDelta="0"
         android:toYDelta="0"/>
 </set>

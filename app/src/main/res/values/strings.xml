@@ -1,21 +1,6 @@
 <resources>
     <string name="app_name">CurrencyConverterApp</string>
     <string-array name="currency_codes">
-        <item>AAVE</item>
-        <item>ABT</item>
-        <item>ACH</item>
-        <item>ADA</item>
-        <item>AED</item>
-        <item>AERGO</item>
-        <item>AFN</item>
-        <item>AGLD</item>
-        <item>AIOZ</item>
-        <item>ALCX</item>
-        <item>ALEPH</item>
-        <item>ALGO</item>
-        <item>ALICE</item>
-        <item>ALL</item>
-        <item>AMD</item>
         <item>CAD</item>
         <item>EUR</item>
         <item>HKD</item>

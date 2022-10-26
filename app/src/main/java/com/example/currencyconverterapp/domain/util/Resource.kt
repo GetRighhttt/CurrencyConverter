@@ -1,4 +1,4 @@
-package com.example.currencyconverterapp.domain
+package com.example.currencyconverterapp.domain.util
 
 /*
 Generic wrapper class from google usually used to outline classes that define the state of

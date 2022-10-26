@@ -58,4 +58,6 @@
     <string name="from">From...</string>
     <string name="to">To...</string>
     <string name="enter_number">Enter Number:</string>
+    <string name="convert">Convert</string>
+    <string name="github">https://github.com/getrighhttt</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.currencyconverterapp.domain.repository
 
+import android.os.Build
+import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.data.model.CurrencyResponse
 import com.example.currencyconverterapp.domain.util.Resource
@@ -15,7 +17,7 @@ class RepositoryImpl @Inject constructor(
      */
     override suspend fun getRates(base: String): Resource<CurrencyResponse> {
         return try {
-             val response = apiService.getRates(base)
+             val response = apiService.getRates(base, BuildConfig.API_KEY)
             val result = response.body()
             if((response.isSuccessful) && (result != null)) {
                 Resource.Success(result)

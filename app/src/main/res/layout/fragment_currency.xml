@@ -54,7 +54,7 @@
         app:boxStrokeColor="@color/white"
         app:helperText="Required"
         app:helperTextTextColor="#9E7A3A"
-        app:hintTextColor="#292828"
+        app:hintTextColor="#A30322"
         app:layout_constraintBottom_toTopOf="@id/tv_next"
         app:layout_constraintEnd_toStartOf="@id/tv_to"
         app:layout_constraintStart_toStartOf="@id/tv_start"
@@ -150,8 +150,7 @@
         app:layout_constraintEnd_toEndOf="@id/tvResult"
         app:layout_constraintStart_toStartOf="@id/tvResult"
         app:layout_constraintTop_toTopOf="@id/tvResult"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <View
         android:id="@+id/view_two"

@@ -2,6 +2,7 @@ package com.example.currencyconverterapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.model.Rates
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
@@ -45,7 +46,8 @@ class CurrencyViewModel @Inject constructor(
         viewModelScope.launch(dispatchers.ioCD) {
             _conversion.value = CurrencyEvent.Loading
 
-            when (val ratesResponse = repository.getRates(fromCountryCurrency)) {
+            when (val ratesResponse =
+                repository.getRates(fromCountryCurrency)) {
                 is Resource.Error -> _conversion.value =
                     CurrencyEvent.Failure(ratesResponse.message!!)
                 is Resource.Success -> {

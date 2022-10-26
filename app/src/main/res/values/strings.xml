@@ -53,4 +53,9 @@
     <string name="currency_converter">Currency $</string>
     <string name="an_easy_way_to_convert_currency">An easy way to convert currency from over 50 countries</string>
     <string name="begin">Let\'s Begin</string>
+    <string name="choose_currency">Choose Currency:</string>
+    <string name="start_here">Start Here...</string>
+    <string name="from">From...</string>
+    <string name="to">To...</string>
+    <string name="enter_number">Enter Number:</string>
 </resources>

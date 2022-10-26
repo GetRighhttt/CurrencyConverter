@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_title" >
         <action
             android:id="@+id/action_titleFragment_to_currencyFragment"
-            app:destination="@id/currencyFragment" />
+            app:destination="@id/currencyFragment"
+            app:enterAnim="@anim/bounce"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/bounce_interpolator"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/currencyFragment"

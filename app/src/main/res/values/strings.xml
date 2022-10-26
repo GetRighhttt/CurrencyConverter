@@ -48,9 +48,8 @@
         <item>GBP</item>
         <item>KRW</item>
         <item>MYR</item>
+        <item>USD</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="currency_converter">Currency $</string>
     <string name="an_easy_way_to_convert_currency">An easy way to convert currency from over 50 countries</string>
     <string name="begin">Let\'s Begin</string>

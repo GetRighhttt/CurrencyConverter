@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -75,12 +76,18 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             fragmentContainerView.visibility = View.INVISIBLE
         }
+        Toast.makeText(
+            this@MainActivity, "Disconnected. Please reconnect...",
+            Toast.LENGTH_LONG).show()
     }
 
     private fun connected() {
         binding.apply {
             fragmentContainerView.visibility = View.VISIBLE
         }
+        Toast.makeText(
+            this@MainActivity, "Connected...",
+            Toast.LENGTH_LONG).show()
     }
 
 }

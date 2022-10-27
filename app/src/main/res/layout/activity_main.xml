@@ -16,4 +16,11 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_baseline_signal_cellular_connected_no_internet_4_bar_24"
+        android:visibility="gone" />
+
 </LinearLayout>

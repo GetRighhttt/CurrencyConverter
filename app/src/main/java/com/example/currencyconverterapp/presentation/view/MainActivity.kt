@@ -1,7 +1,13 @@
 package com.example.currencyconverterapp.presentation.view
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
@@ -23,6 +29,19 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var currencyViewModelFactory: CurrencyViewModelFactory
 
+    private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val notConnected = intent.getBooleanExtra(
+                ConnectivityManager
+                .EXTRA_NO_CONNECTIVITY, false)
+            if (notConnected) {
+                disconnected()
+            } else {
+                connected()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,4 +60,27 @@ class MainActivity : AppCompatActivity() {
             this, currencyViewModelFactory
         )[CurrencyViewModel::class.java]
     }
+
+    override fun onStart() {
+        super.onStart()
+        registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unregisterReceiver(broadcastReceiver)
+    }
+
+    private fun disconnected() {
+        binding.apply {
+            fragmentContainerView.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun connected() {
+        binding.apply {
+            fragmentContainerView.visibility = View.VISIBLE
+        }
+    }
+
 }

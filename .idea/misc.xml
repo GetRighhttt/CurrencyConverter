@@ -10,6 +10,10 @@
         <entry key="..\:/Users/stefa/AndroidStudioProjects/CurrencyConverterApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/stefa/AndroidStudioProjects/CurrencyConverterApp/app/src/main/res/layout/fragment_currency.xml" value="0.1" />
         <entry key="..\:/Users/stefa/AndroidStudioProjects/CurrencyConverterApp/app/src/main/res/layout/fragment_title.xml" value="0.23229166666666667" />
+        <entry key="app/src/main/res/drawable/background.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_baseline_signal_cellular_connected_no_internet_4_bar_24.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.201" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.13804457953394123" />
       </map>
     </option>
   </component>

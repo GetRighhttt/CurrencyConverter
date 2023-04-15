@@ -11,13 +11,13 @@ sealed class Resource<T>(
 
     // We'll wrap our data in this 'Success'
     // class in case of success response from api
-    class Success<T>(data: T) : Resource<T>(data = data)
+    open class Success<T>(data: T) : Resource<T>(data = data)
 
     // We'll pass error message wrapped in this 'Error'
     // class to the UI in case of failure response
-    class Error<T>(errorMessage: String) : Resource<T>(message = errorMessage)
+    open class Error<T>(errorMessage: String) : Resource<T>(message = errorMessage)
 
     // We'll just pass object of this Loading
     // class, just before making an api call
-    class Loading<T> : Resource<T>()
+    open class Loading<T> : Resource<T>()
 }

@@ -13,11 +13,14 @@
         <entry key="app/src/main/res/drawable/background.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/ic_baseline_signal_cellular_connected_no_internet_4_bar_24.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.201" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.13804457953394123" />
+        <entry key="app/src/main/res/layout/fragment_currency.xml" value="0.23703703703703705" />
+        <entry key="app/src/main/res/layout/fragment_title.xml" value="0.23703703703703705" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

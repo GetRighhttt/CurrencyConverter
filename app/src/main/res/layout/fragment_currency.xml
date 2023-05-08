@@ -37,9 +37,9 @@
         android:layout_height="2dp"
         android:layout_marginBottom="20dp"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline1" />
 
     <TextView
         android:id="@+id/tv_start"
@@ -156,12 +156,12 @@
         android:id="@+id/progressBar"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:visibility="invisible"
         android:backgroundTint="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tvResult"
         app:layout_constraintStart_toStartOf="@id/tvResult"
-        app:layout_constraintTop_toTopOf="@id/tvResult"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/tvResult" />
 
     <View
         android:id="@+id/view_two"
@@ -170,8 +170,8 @@
         android:layout_marginBottom="5dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/github"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/github"

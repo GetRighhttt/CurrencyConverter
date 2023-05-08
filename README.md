@@ -14,6 +14,7 @@ receiver to monitor connectivity. This was a fun project to create. </p>
 - Clean Code Architecture
 - SOLID principles
 - Broadcase Receiver
+- Material Dialog
 - Motion Layout
 - Splash Screen Animation
 - Transitions

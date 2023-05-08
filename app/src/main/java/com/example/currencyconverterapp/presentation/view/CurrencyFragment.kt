@@ -43,20 +43,21 @@ class CurrencyFragment : Fragment() {
             }
 
             lifecycleScope.launchWhenStarted {
-                viewModel.conversion.collect { event ->
-                    when (event) {
+                viewModel.conversion.collect { currency ->
+                    when (currency) {
                         is CurrencyEvent.Success -> {
                             progressBar.visibility = View.INVISIBLE
-                            tvResult.text = event.resultText.toString()
+                            tvResult.text = currency.resultText
                         }
                         is CurrencyEvent.Failure -> {
                             progressBar.visibility = View.INVISIBLE
-                            tvResult.text = event.errorText.toString()
+                            tvResult.text = currency.errorText
                         }
                         is CurrencyEvent.Loading -> {
                             progressBar.visibility = View.VISIBLE
                         }
-                        else -> Unit
+
+                        else -> { Unit }
                     }
                 }
             }

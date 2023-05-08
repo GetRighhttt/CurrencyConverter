@@ -13,11 +13,12 @@ import com.example.currencyconverterapp.databinding.ActivitySplashScreenBinding
 @Suppress("Deprecation")
 class SplashScreenActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySplashScreenBinding
+    private var _binding: ActivitySplashScreenBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         /*
@@ -29,14 +30,17 @@ class SplashScreenActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
-            override fun run() {
-                startActivity(
-                    Intent(this@SplashScreenActivity, MainActivity::class.java)
-                )
-                finish()
-            }
-        }, 3500)
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(
+                Intent(this@SplashScreenActivity, MainActivity::class.java)
+            )
+            finish()
+        }, 2000)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

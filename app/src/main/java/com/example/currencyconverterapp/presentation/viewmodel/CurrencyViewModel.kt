@@ -2,13 +2,13 @@ package com.example.currencyconverterapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.model.Rates
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
 import com.example.currencyconverterapp.domain.util.DispatcherProvider
 import com.example.currencyconverterapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -44,6 +44,7 @@ class CurrencyViewModel @Inject constructor(
         }
 
         viewModelScope.launch(dispatchers.ioCD) {
+            delay(500)
             _conversion.value = CurrencyEvent.Loading
 
             when (val ratesResponse =

@@ -1,6 +1,8 @@
 package com.example.currencyconverterapp.presentation.view
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +15,9 @@ import com.example.currencyconverterapp.R.*
 import com.example.currencyconverterapp.R.color.*
 import com.example.currencyconverterapp.databinding.FragmentCurrencyBinding
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
+import com.example.currencyconverterapp.domain.util.MaterialDialogBuild.materialDialog
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class CurrencyFragment : Fragment() {
@@ -32,7 +36,12 @@ class CurrencyFragment : Fragment() {
         _binding = FragmentCurrencyBinding.inflate(inflater, container, false)
 
         viewModel = (activity as MainActivity).viewModel
+        initializeViews()
+        return binding!!.root
+    }
 
+    @SuppressLint("SetTextI18n")
+    private fun initializeViews() {
         binding!!.apply {
             btnConvert.setOnClickListener {
                 viewModel.convert(
@@ -49,21 +58,27 @@ class CurrencyFragment : Fragment() {
                             progressBar.visibility = View.INVISIBLE
                             tvResult.text = currency.resultText
                         }
+
                         is CurrencyEvent.Failure -> {
                             progressBar.visibility = View.INVISIBLE
-                            tvResult.text = currency.errorText
+                            tvResult.text = "Error when retrieving currencies.."
+                            materialDialog(
+                                requireContext(), "ERROR", "It seems as though" +
+                                        " your exchange could not be completed. Consider trying again."
+                            )
                         }
+
                         is CurrencyEvent.Loading -> {
                             progressBar.visibility = View.VISIBLE
                         }
 
-                        else -> { Unit }
+                        else -> {
+                            Unit
+                        }
                     }
                 }
             }
         }
-
-        return binding!!.root
     }
 
     override fun onDestroy() {

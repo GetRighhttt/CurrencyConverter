@@ -12,8 +12,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.currencyconverterapp.databinding.ActivityMainBinding
+import com.example.currencyconverterapp.domain.util.MaterialDialogBuild
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -32,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context, intent: Intent) {
             val notConnected = intent.getBooleanExtra(
                 ConnectivityManager
-                .EXTRA_NO_CONNECTIVITY, false)
+                    .EXTRA_NO_CONNECTIVITY, false
+            )
             if (notConnected) {
                 disconnected()
             } else {
@@ -74,18 +77,18 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             fragmentContainerView.visibility = View.INVISIBLE
         }
-        Toast.makeText(
-            this@MainActivity, "Disconnected. Please reconnect...",
-            Toast.LENGTH_LONG).show()
+        MaterialDialogBuild.materialDialog(
+            this@MainActivity,
+            "Disconnected",
+            "You have lost connection!"
+        )
     }
 
     private fun connected() {
         binding.apply {
             fragmentContainerView.visibility = View.VISIBLE
         }
-        Toast.makeText(
-            this@MainActivity, "Connected...",
-            Toast.LENGTH_LONG).show()
+        Snackbar.make(binding.root, "Connected", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

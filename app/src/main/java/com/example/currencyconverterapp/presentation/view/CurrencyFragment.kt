@@ -2,6 +2,7 @@ package com.example.currencyconverterapp.presentation.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,10 @@ class CurrencyFragment : Fragment() {
     private val binding get() = _binding
 
     private lateinit var viewModel: CurrencyViewModel
+
+    companion object {
+        const val CURRENCY_FRAGMENT = "CURRENCY_FRAGMENT"
+    }
 
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
@@ -68,7 +73,7 @@ class CurrencyFragment : Fragment() {
                         }
 
                         else -> {
-                            Unit
+                            Log.d(CURRENCY_FRAGMENT, "Currently at an empty state...")
                         }
                     }
                 }

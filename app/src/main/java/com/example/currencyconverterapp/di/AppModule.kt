@@ -5,7 +5,6 @@ import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.domain.repository.RepositoryImpl
 import com.example.currencyconverterapp.domain.util.DispatcherProvider
-import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -13,12 +12,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 

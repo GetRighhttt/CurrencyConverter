@@ -1,10 +1,9 @@
 package com.example.currencyconverterapp.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import android.os.Parcelable
-import com.example.currencyconverterapp.data.model.Rates
 
 @Parcelize
 data class CurrencyResponse(

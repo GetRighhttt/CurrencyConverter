@@ -1,11 +1,8 @@
 package com.example.currencyconverterapp.domain.repository
 
-import android.os.Build
-import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.data.model.CurrencyResponse
 import com.example.currencyconverterapp.domain.util.Resource
-import java.lang.Exception
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(

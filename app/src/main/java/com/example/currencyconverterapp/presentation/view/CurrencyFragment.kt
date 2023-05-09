@@ -1,23 +1,18 @@
 package com.example.currencyconverterapp.presentation.view
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.graphics.Color
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.currencyconverterapp.R
 import com.example.currencyconverterapp.R.*
 import com.example.currencyconverterapp.R.color.*
 import com.example.currencyconverterapp.databinding.FragmentCurrencyBinding
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
 import com.example.currencyconverterapp.domain.util.MaterialDialogBuild.materialDialog
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class CurrencyFragment : Fragment() {

@@ -9,7 +9,7 @@
         android:id="@+id/titleFragment"
         android:name="com.example.currencyconverterapp.presentation.view.TitleFragment"
         android:label="fragment_title"
-        tools:layout="@layout/fragment_title" >
+        tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_currencyFragment"
             app:destination="@id/currencyFragment"

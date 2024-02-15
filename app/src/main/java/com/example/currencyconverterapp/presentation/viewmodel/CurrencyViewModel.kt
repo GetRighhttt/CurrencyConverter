@@ -30,6 +30,9 @@ class CurrencyViewModel @Inject constructor(
     private val _conversion = MutableStateFlow<CurrencyEvent>(CurrencyEvent.Empty)
     val conversion: StateFlow<CurrencyEvent> = _conversion
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
     fun convert(
         amountOfCurrency: String,
         fromCountryCurrency: String,
@@ -46,6 +49,7 @@ class CurrencyViewModel @Inject constructor(
         viewModelScope.launch(dispatchers.ioCD) {
             delay(500)
             _conversion.value = CurrencyEvent.Loading
+            _isLoading.value = true
 
             when (val ratesResponse =
                 repository.getRates(fromCountryCurrency)) {
@@ -69,6 +73,7 @@ class CurrencyViewModel @Inject constructor(
 
                 is Resource.Loading -> _conversion.value = CurrencyEvent.Loading
             }
+            _isLoading.value = false
         }
     }
 

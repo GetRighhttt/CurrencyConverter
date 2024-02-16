@@ -40,9 +40,7 @@ class CurrencyViewModel @Inject constructor(
     ) {
         val fromAmount = amountOfCurrency.toFloatOrNull()
         if (fromAmount == null) {
-            _conversion.value = CurrencyEvent.Failure(
-                "Inaccurate amount entered."
-            )
+            _conversion.value = CurrencyEvent.Failure("Inaccurate amount entered.")
             return
         }
 

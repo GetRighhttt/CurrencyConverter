@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var currencyViewModelFactory: CurrencyViewModelFactory
 
-    private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val notConnected = intent.getBooleanExtra(
                 ConnectivityManager

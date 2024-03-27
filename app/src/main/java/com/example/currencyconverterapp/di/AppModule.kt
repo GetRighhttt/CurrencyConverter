@@ -1,9 +1,9 @@
 package com.example.currencyconverterapp.di
 
-import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.data.api.RepositoryImpl
+import com.example.currencyconverterapp.domain.util.Constants
 import com.example.currencyconverterapp.domain.util.DispatcherProvider
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModelFactory
 import dagger.Module
@@ -56,7 +56,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideApiService(): ApiService = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
+        .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(provideHttpInterceptor())
         .build()

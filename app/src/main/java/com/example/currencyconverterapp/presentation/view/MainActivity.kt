@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity() {
         )[CurrencyViewModel::class.java]
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         unregisterReceiver(broadcastReceiver)
     }
 
@@ -87,7 +87,11 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             fragmentContainerView.visibility = View.VISIBLE
         }
-        Snackbar.make(binding.root, "Connected", Snackbar.LENGTH_SHORT).show()
+        MaterialDialogBuild.materialDialog(
+            this@MainActivity,
+            "Connected",
+            "Connected to Internet."
+        )
     }
 
     override fun onDestroy() {

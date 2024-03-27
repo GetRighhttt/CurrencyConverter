@@ -1,6 +1,6 @@
 package com.example.currencyconverterapp.data.api
 
-import com.example.currencyconverterapp.data.model.CurrencyResponse
+import com.example.currencyconverterapp.domain.model.CurrencyResponse
 import pub.devrel.easypermissions.BuildConfig
 import retrofit2.Response
 import retrofit2.http.GET

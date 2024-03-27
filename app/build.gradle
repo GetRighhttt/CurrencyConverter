@@ -38,14 +38,15 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig = true
     }
     namespace 'com.example.currencyconverterapp'
 }
 
 dependencies {
 
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'
-    ext.lifecycle_version = "2.6.1"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+    ext.lifecycle_version = "2.7.0"
 
     /*
     Dependency injection dependencies - Hilt.
@@ -54,18 +55,18 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     // Navigation - safe args
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
 
     /*
   Core dependencies.
    */
     // Core Dependencies
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
     // Application Compat Dependency
     implementation 'androidx.appcompat:appcompat:1.6.1'
     // Material components
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -85,7 +86,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.13.1'
 
     // Coroutines - suspendable threads
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 
     /*

@@ -3,7 +3,7 @@ package com.example.currencyconverterapp.di
 import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.domain.repository.Repository
-import com.example.currencyconverterapp.domain.repository.RepositoryImpl
+import com.example.currencyconverterapp.data.api.RepositoryImpl
 import com.example.currencyconverterapp.domain.util.DispatcherProvider
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModelFactory
 import dagger.Module
@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import pub.devrel.easypermissions.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

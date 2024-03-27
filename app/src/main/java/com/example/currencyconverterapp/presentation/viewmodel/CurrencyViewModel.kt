@@ -2,7 +2,7 @@ package com.example.currencyconverterapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.currencyconverterapp.data.model.Rates
+import com.example.currencyconverterapp.domain.model.Rates
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
 import com.example.currencyconverterapp.domain.util.DispatcherProvider

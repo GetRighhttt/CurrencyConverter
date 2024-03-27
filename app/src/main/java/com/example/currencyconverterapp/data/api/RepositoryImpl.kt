@@ -1,7 +1,7 @@
-package com.example.currencyconverterapp.domain.repository
+package com.example.currencyconverterapp.data.api
 
-import com.example.currencyconverterapp.data.api.ApiService
-import com.example.currencyconverterapp.data.model.CurrencyResponse
+import com.example.currencyconverterapp.domain.model.CurrencyResponse
+import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.domain.util.Resource
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.currencyconverterapp.data.model
+package com.example.currencyconverterapp.domain.model
 
 
 import android.os.Parcelable

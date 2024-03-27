@@ -1,6 +1,6 @@
 package com.example.currencyconverterapp.domain.repository
 
-import com.example.currencyconverterapp.data.model.CurrencyResponse
+import com.example.currencyconverterapp.domain.model.CurrencyResponse
 import com.example.currencyconverterapp.domain.util.Resource
 
 /*

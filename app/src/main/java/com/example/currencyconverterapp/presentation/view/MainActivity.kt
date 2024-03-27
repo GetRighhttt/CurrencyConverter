@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity() {
         )[CurrencyViewModel::class.java]
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         unregisterReceiver(broadcastReceiver)
     }
 
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         MaterialDialogBuild.materialDialog(
             this@MainActivity,
             "Connected",
-            "Connected to Internet."
+            "You are now Connected!"
         )
     }
 

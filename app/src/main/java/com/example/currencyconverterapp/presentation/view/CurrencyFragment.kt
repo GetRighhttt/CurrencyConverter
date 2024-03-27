@@ -23,10 +23,6 @@ class CurrencyFragment : Fragment() {
 
     private lateinit var viewModel: CurrencyViewModel
 
-    companion object {
-        const val CURRENCY_FRAGMENT = "CURRENCY_FRAGMENT"
-    }
-
     @SuppressLint("ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +38,7 @@ class CurrencyFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initializeViews() {
-        binding!!.apply {
+        binding?.apply {
             btnConvert.setOnClickListener {
                 viewModel.convert(
                     etEnterNumber.text.toString(),
@@ -84,5 +80,9 @@ class CurrencyFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        const val CURRENCY_FRAGMENT = "CURRENCY_FRAGMENT"
     }
 }

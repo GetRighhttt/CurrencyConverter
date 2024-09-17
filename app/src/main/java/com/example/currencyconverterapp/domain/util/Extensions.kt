@@ -3,7 +3,7 @@ package com.example.currencyconverterapp.domain.util
 import android.content.Context
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-object MaterialDialogBuild {
+object Extensions {
 
     fun materialDialog(
         context: Context,

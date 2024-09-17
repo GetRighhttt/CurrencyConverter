@@ -14,5 +14,5 @@ interface ApiService {
     @GET("latest")
     suspend fun getRates(
         @Query("base") base: String
-    ) : Response<CurrencyResponse>
+    ): Response<CurrencyResponse>
 }

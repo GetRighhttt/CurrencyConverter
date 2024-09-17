@@ -12,7 +12,7 @@ import com.example.currencyconverterapp.R.*
 import com.example.currencyconverterapp.R.color.*
 import com.example.currencyconverterapp.databinding.FragmentCurrencyBinding
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
-import com.example.currencyconverterapp.domain.util.MaterialDialogBuild.materialDialog
+import com.example.currencyconverterapp.domain.util.Extensions.materialDialog
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
 
 

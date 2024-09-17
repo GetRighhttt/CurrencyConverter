@@ -11,10 +11,9 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.currencyconverterapp.databinding.ActivityMainBinding
-import com.example.currencyconverterapp.domain.util.MaterialDialogBuild
+import com.example.currencyconverterapp.domain.util.Extensions
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -76,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             fragmentContainerView.visibility = View.INVISIBLE
         }
-        MaterialDialogBuild.materialDialog(
+        Extensions.materialDialog(
             this@MainActivity,
             "Disconnected",
             "You have lost connection!"
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             fragmentContainerView.visibility = View.VISIBLE
         }
-        MaterialDialogBuild.materialDialog(
+        Extensions.materialDialog(
             this@MainActivity,
             "Connected",
             "You are now Connected!"

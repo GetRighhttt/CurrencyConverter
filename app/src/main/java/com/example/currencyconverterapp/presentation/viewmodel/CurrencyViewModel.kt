@@ -52,6 +52,7 @@ class CurrencyViewModel @Inject constructor(
             when (val ratesResponse = repository.getRates(fromCountryCurrency)) {
                 is Resource.Error -> _conversion.value =
                     CurrencyEvent.Failure(ratesResponse.message!!)
+
                 is Resource.Success -> {
                     val rates = ratesResponse.data!!.rates
                     val rate = getRateForCurrency(toCountryCurrency, rates)

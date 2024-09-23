@@ -5,7 +5,6 @@
     android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     app:layoutDescription="@xml/activity_splash_screen_scene"
     tools:context=".presentation.view.SplashScreenActivity">
 
@@ -14,6 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@drawable/background"
+        android:contentDescription="@string/image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +24,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/yellowgrsplack"
+        android:contentDescription="@string/image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +34,7 @@
         android:id="@+id/black_graphic_pic"
         android:layout_width="250dp"
         android:layout_height="250dp"
+        android:contentDescription="@string/image"
         android:src="@drawable/whitegrsplack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

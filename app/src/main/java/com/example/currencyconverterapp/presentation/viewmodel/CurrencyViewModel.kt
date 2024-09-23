@@ -44,7 +44,7 @@ class CurrencyViewModel @Inject constructor(
             return
         }
 
-        viewModelScope.launch(dispatchers.ioCD) {
+        viewModelScope.launch(dispatchers.mainCD) {
             delay(500)
             _conversion.value = CurrencyEvent.Loading
             _isLoading.value = true
@@ -68,7 +68,10 @@ class CurrencyViewModel @Inject constructor(
                     }
                 }
 
-                is Resource.Loading -> _conversion.value = CurrencyEvent.Loading
+                is Resource.Loading -> {
+                    _conversion.value = CurrencyEvent.Loading
+                    _isLoading.value = true
+                }
             }
             _isLoading.value = false
         }

@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.round
@@ -40,40 +41,44 @@ class CurrencyViewModel @Inject constructor(
     ) {
         val fromAmount = amountOfCurrency.toFloatOrNull()
         if (fromAmount == null) {
-            _conversion.value = CurrencyEvent.Failure("Inaccurate amount entered.")
+            _conversion.update { CurrencyEvent.Failure("Inaccurate amount entered.") }
             return
         }
 
         viewModelScope.launch(dispatchers.mainCD) {
             delay(500)
-            _conversion.value = CurrencyEvent.Loading
-            _isLoading.value = true
+            _conversion.update { CurrencyEvent.Loading }
+            _isLoading.update { true }
 
             when (val ratesResponse = repository.getRates(fromCountryCurrency)) {
-                is Resource.Error -> _conversion.value =
+                is Resource.Error -> _conversion.update {
                     CurrencyEvent.Failure(ratesResponse.message!!)
+                }
 
                 is Resource.Success -> {
                     val rates = ratesResponse.data!!.rates
                     val rate = getRateForCurrency(toCountryCurrency, rates)
                     if (rate == null) {
-                        _conversion.value =
+                        _conversion.update {
                             CurrencyEvent.Failure("We have an unexpected error...")
+                        }
                     } else {
                         val convertedCurrency = round(fromAmount * rate.toFloat() * 100) / 100
-                        _conversion.value = CurrencyEvent.Success(
-                            "$fromAmount $fromCountryCurrency = " +
-                                    "$convertedCurrency $toCountryCurrency"
-                        )
+                        _conversion.update {
+                            CurrencyEvent.Success(
+                                "$fromAmount $fromCountryCurrency = " +
+                                        "$convertedCurrency $toCountryCurrency"
+                            )
+                        }
                     }
                 }
 
                 is Resource.Loading -> {
-                    _conversion.value = CurrencyEvent.Loading
-                    _isLoading.value = true
+                    _conversion.update { CurrencyEvent.Loading }
+                    _isLoading.update { true }
                 }
             }
-            _isLoading.value = false
+            _isLoading.update { false }
         }
     }
 

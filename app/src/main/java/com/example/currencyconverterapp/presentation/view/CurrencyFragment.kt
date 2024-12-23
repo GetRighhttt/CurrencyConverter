@@ -6,17 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.collectAsState
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import com.example.currencyconverterapp.R.*
-import com.example.currencyconverterapp.R.color.*
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.currencyconverterapp.databinding.FragmentCurrencyBinding
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
 import com.example.currencyconverterapp.domain.util.Extensions.materialDialog
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -51,29 +48,31 @@ class CurrencyFragment : Fragment() {
                 )
             }
 
-            lifecycleScope.launchWhenStarted {
-                viewModel.conversion.collect { currency ->
-                    when (currency) {
-                        is CurrencyEvent.Success -> {
-                            progressBar.visibility = View.INVISIBLE
-                            tvResult.text = currency.resultText
-                        }
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.conversion.collect { currency ->
+                        when (currency) {
+                            is CurrencyEvent.Success -> {
+                                progressBar.visibility = View.INVISIBLE
+                                tvResult.text = currency.resultText
+                            }
 
-                        is CurrencyEvent.Failure -> {
-                            progressBar.visibility = View.INVISIBLE
-                            tvResult.text = "Error when retrieving currencies.."
-                            materialDialog(
-                                requireContext(), "ERROR", "It seems as though" +
-                                        " your exchange could not be completed. Consider trying again."
-                            )
-                        }
+                            is CurrencyEvent.Failure -> {
+                                progressBar.visibility = View.INVISIBLE
+                                tvResult.text = "Error when retrieving currencies.."
+                                materialDialog(
+                                    requireContext(), "ERROR", "It seems as though" +
+                                            " your exchange could not be completed. Consider trying again."
+                                )
+                            }
 
-                        is CurrencyEvent.Loading -> {
-                            progressBar.visibility = View.VISIBLE
-                        }
+                            is CurrencyEvent.Loading -> {
+                                progressBar.visibility = View.VISIBLE
+                            }
 
-                        else -> {
-                            Log.d(CURRENCY_FRAGMENT, "Currently at an empty state...")
+                            else -> {
+                                Log.d(CURRENCY_FRAGMENT, "Currently at an empty state...")
+                            }
                         }
                     }
                 }
@@ -81,8 +80,10 @@ class CurrencyFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            viewModel.isLoading.collect { it ->
-                Log.d(CURRENCY_FRAGMENT, "Loading currencies")
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isLoading.collect {
+                    Log.d(CURRENCY_FRAGMENT, "Loading currencies")
+                }
             }
         }
     }

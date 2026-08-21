@@ -8,69 +8,69 @@ import android.os.Parcelable
 @Parcelize
 data class Rates(
     @SerializedName("AUD")
-    val aUD: String,
+    val aUD: String?,
     @SerializedName("BGN")
-    val bGN: String,
+    val bGN: String?,
     @SerializedName("EUR")
-    val eUR: String,
+    val eUR: String?,
     @SerializedName("BRL")
-    val bRL: String,
+    val bRL: String?,
     @SerializedName("CAD")
-    val cAD: String,
+    val cAD: String?,
     @SerializedName("CHF")
-    val cHF: String,
+    val cHF: String?,
     @SerializedName("CNY")
-    val cNY: String,
+    val cNY: String?,
     @SerializedName("CZK")
-    val cZK: String,
+    val cZK: String?,
     @SerializedName("DKK")
-    val dKK: String,
+    val dKK: String?,
     @SerializedName("GBP")
-    val gBP: String,
+    val gBP: String?,
     @SerializedName("HKD")
-    val hKD: String,
+    val hKD: String?,
     @SerializedName("HRK")
-    val hRK: String,
+    val hRK: String?,
     @SerializedName("HUF")
-    val hUF: String,
+    val hUF: String?,
     @SerializedName("IDR")
-    val iDR: String,
+    val iDR: String?,
     @SerializedName("ILS")
-    val iLS: String,
+    val iLS: String?,
     @SerializedName("INR")
-    val iNR: String,
+    val iNR: String?,
     @SerializedName("ISK")
-    val iSK: String,
+    val iSK: String?,
     @SerializedName("JPY")
-    val jPY: String,
+    val jPY: String?,
     @SerializedName("KRW")
-    val kRW: String,
+    val kRW: String?,
     @SerializedName("MXN")
-    val mXN: String,
+    val mXN: String?,
     @SerializedName("MYR")
-    val mYR: String,
+    val mYR: String?,
     @SerializedName("NOK")
-    val nOK: String,
+    val nOK: String?,
     @SerializedName("NZD")
-    val nZD: String,
+    val nZD: String?,
     @SerializedName("PHP")
-    val pHP: String,
+    val pHP: String?,
     @SerializedName("PLN")
-    val pLN: String,
+    val pLN: String?,
     @SerializedName("RON")
-    val rON: String,
+    val rON: String?,
     @SerializedName("RUB")
-    val rUB: String,
+    val rUB: String?,
     @SerializedName("SEK")
-    val sEK: String,
+    val sEK: String?,
     @SerializedName("SGD")
-    val sGD: String,
+    val sGD: String?,
     @SerializedName("THB")
-    val tHB: String,
+    val tHB: String?,
     @SerializedName("TRY")
-    val tRY: String,
+    val tRY: String?,
     @SerializedName("USD")
-    val uSD: String,
+    val uSD: String?,
     @SerializedName("ZAR")
-    val zAR: String
+    val zAR: String?
 ) : Parcelable

@@ -1,6 +1,11 @@
 package com.example.currencyconverterapp.domain.util
 
+import com.example.currencyconverterapp.BuildConfig
+
 object Constants {
-    const val API_KEY: String = "VlzQhdGuX7wTu5vVXg3Xee9oRsWCgYkG"
-    const val BASE_URL: String = "https://api.apilayer.com/exchangerates_data/"
+    val API_KEY: String
+        get() = BuildConfig.API_KEY
+
+    val BASE_URL: String
+        get() = BuildConfig.BASE_URL
 }

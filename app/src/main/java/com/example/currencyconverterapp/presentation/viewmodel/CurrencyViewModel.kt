@@ -8,6 +8,8 @@ import com.example.currencyconverterapp.domain.util.CurrencyEvent
 import com.example.currencyconverterapp.domain.util.DispatcherProvider
 import com.example.currencyconverterapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.round
+import kotlin.time.Duration.Companion.milliseconds
 
 /*
 Best way to inject into view model. Pass dispatchers for testing.
@@ -34,51 +37,82 @@ class CurrencyViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private var conversionJob: Job? = null
+
     fun convert(
         amountOfCurrency: String,
         fromCountryCurrency: String,
         toCountryCurrency: String
     ) {
-        val fromAmount = amountOfCurrency.toFloatOrNull()
-        if (fromAmount == null) {
+        conversionJob?.cancel()
+
+        val fromAmount = amountOfCurrency.trim().toDoubleOrNull()
+        if (fromAmount == null || !fromAmount.isFinite() || fromAmount < 0) {
             _conversion.update { CurrencyEvent.Failure("Inaccurate amount entered.") }
             return
         }
 
-        viewModelScope.launch(dispatchers.mainCD) {
-            delay(500)
-            _conversion.update { CurrencyEvent.Loading }
-            _isLoading.update { true }
+        val fromCurrency = fromCountryCurrency.uppercase()
+        val toCurrency = toCountryCurrency.uppercase()
 
-            when (val ratesResponse = repository.getRates(fromCountryCurrency)) {
-                is Resource.Error -> _conversion.update {
-                    CurrencyEvent.Failure(ratesResponse.message!!)
-                }
+        if (fromCurrency == toCurrency) {
+            _isLoading.update { false }
+            _conversion.update {
+                CurrencyEvent.Success("$fromAmount $fromCurrency = $fromAmount $toCurrency")
+            }
+            return
+        }
 
-                is Resource.Success -> {
-                    val rates = ratesResponse.data!!.rates
-                    val rate = getRateForCurrency(toCountryCurrency, rates)
-                    if (rate == null) {
-                        _conversion.update {
-                            CurrencyEvent.Failure("We have an unexpected error...")
+        conversionJob = viewModelScope.launch(dispatchers.mainCD) {
+            try {
+                delay(500.milliseconds)
+                _conversion.update { CurrencyEvent.Loading }
+                _isLoading.update { true }
+
+                when (val ratesResponse = repository.getRates(fromCurrency)) {
+                    is Resource.Error -> _conversion.update {
+                        CurrencyEvent.Failure(
+                            ratesResponse.message ?: "Unable to retrieve rates."
+                        )
+                    }
+
+                    is Resource.Success -> {
+                        val rates = ratesResponse.data?.rates
+                        val rate = rates?.let {
+                            getRateForCurrency(toCurrency, it)?.toDoubleOrNull()
                         }
-                    } else {
-                        val convertedCurrency = round(fromAmount * rate.toFloat() * 100) / 100
-                        _conversion.update {
-                            CurrencyEvent.Success(
-                                "$fromAmount $fromCountryCurrency = " +
-                                        "$convertedCurrency $toCountryCurrency"
-                            )
+
+                        if (rate == null || !rate.isFinite() || rate < 0) {
+                            _conversion.update {
+                                CurrencyEvent.Failure("We have an unexpected error...")
+                            }
+                        } else {
+                            val convertedCurrency = round(fromAmount * rate * 100) / 100
+                            _conversion.update {
+                                CurrencyEvent.Success(
+                                    "$fromAmount $fromCurrency = " +
+                                            "$convertedCurrency $toCurrency"
+                                )
+                            }
                         }
                     }
-                }
 
-                is Resource.Loading -> {
-                    _conversion.update { CurrencyEvent.Loading }
-                    _isLoading.update { true }
+                    is Resource.Loading -> {
+                        _conversion.update {
+                            CurrencyEvent.Loading
+                        }
+                        _isLoading.update { true }
+                    }
                 }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                _conversion.update {
+                    CurrencyEvent.Failure(e.message ?: "Unable to retrieve rates.")
+                }
+            } finally {
+                _isLoading.update { false }
             }
-            _isLoading.update { false }
         }
     }
 
@@ -117,6 +151,7 @@ class CurrencyViewModel @Inject constructor(
                 "GBP" -> rates.gBP
                 "KRW" -> rates.kRW
                 "MYR" -> rates.mYR
+                "TRY" -> rates.tRY
                 else -> null
             }
     }

@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="brand_black">#171717</color>
+    <color name="brand_white">#FFFFFFFF</color>
+    <color name="screen_background">#FFF9F0</color>
+    <color name="surface_card">#FFFFFFFF</color>
+    <color name="primary_text">#171717</color>
+    <color name="secondary_text">#746C62</color>
+    <color name="outline">#E4DED4</color>
+    <color name="result_surface">#FFF1A8</color>
+    <color name="result_text">#171717</color>
+    <color name="result_accent">#725C00</color>
+    <color name="result_outline">#DEC33A</color>
+    <color name="brand_yellow">#F4E04D</color>
+    <color name="brand_yellow_deep">#B99A16</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

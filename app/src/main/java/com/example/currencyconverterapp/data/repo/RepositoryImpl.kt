@@ -4,6 +4,7 @@ import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.domain.model.CurrencyResponse
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.domain.util.Resource
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -23,8 +24,13 @@ class RepositoryImpl @Inject constructor(
                 if ((response.isSuccessful) && (result != null)) {
                     Resource.Success(result)
                 } else {
-                    Resource.Error(response.message())
+                    Resource.Error(
+                        response.message().takeUnless { it.isBlank() }
+                            ?: "Unable to retrieve rates."
+                    )
                 }
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: Exception) {
                 Resource.Error(e.message ?: "Unable to retrieve rates.")
             }

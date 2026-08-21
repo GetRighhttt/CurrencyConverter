@@ -1,5 +1,6 @@
 package com.example.currencyconverterapp.di
 
+import com.example.currencyconverterapp.BuildConfig
 import com.example.currencyconverterapp.data.api.ApiService
 import com.example.currencyconverterapp.domain.repository.Repository
 import com.example.currencyconverterapp.data.repo.RepositoryImpl
@@ -29,8 +30,13 @@ object AppModule {
     @Singleton
     @Provides
     fun provideHttpInterceptor(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
+            redactHeader("apikey")
         }
 
         /**
@@ -40,7 +46,15 @@ object AppModule {
          * somebody has slow internet.
          */
         val client = OkHttpClient.Builder().apply {
-            this.addInterceptor(interceptor)
+            addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                if (BuildConfig.API_KEY.isNotBlank()) {
+                    request.addHeader("apikey", BuildConfig.API_KEY)
+                }
+                chain.proceed(request.build())
+            }
+            addInterceptor(loggingInterceptor)
+                .callTimeout(25, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(25, TimeUnit.SECONDS)

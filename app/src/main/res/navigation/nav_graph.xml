@@ -15,7 +15,7 @@
             app:destination="@id/currencyFragment"
             app:enterAnim="@anim/bounce"
             app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/bounce_interpolator"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment

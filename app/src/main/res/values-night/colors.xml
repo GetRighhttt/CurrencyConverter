@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="screen_background">#111110</color>
+    <color name="surface_card">#1D1D1B</color>
+    <color name="primary_text">#F7F2E9</color>
+    <color name="secondary_text">#BDB5A8</color>
+    <color name="outline">#3C3934</color>
+    <color name="result_surface">#252421</color>
+    <color name="result_text">#FFFFFFFF</color>
+    <color name="result_accent">#F4E04D</color>
+    <color name="result_outline">#3C3934</color>
+</resources>

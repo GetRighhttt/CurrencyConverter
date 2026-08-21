@@ -1,8 +1,8 @@
 package com.example.currencyconverterapp.presentation.view
 
-import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,87 +10,78 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.currencyconverterapp.R
 import com.example.currencyconverterapp.databinding.FragmentCurrencyBinding
 import com.example.currencyconverterapp.domain.util.CurrencyEvent
-import com.example.currencyconverterapp.domain.util.Extensions.materialDialog
 import com.example.currencyconverterapp.presentation.viewmodel.CurrencyViewModel
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
 
 
 class CurrencyFragment : Fragment() {
 
     private var _binding: FragmentCurrencyBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     private lateinit var viewModel: CurrencyViewModel
 
-    @SuppressLint("ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentCurrencyBinding.inflate(inflater, container, false)
-
-        viewModel = (activity as MainActivity).viewModel
-        initializeViews()
-        return binding!!.root
+        return binding.root
     }
 
-    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
+        initializeViews()
+    }
+
     private fun initializeViews() {
-        binding?.apply {
-            btnConvert.setOnClickListener {
-                viewModel.convert(
-                    etEnterNumber.text.toString(),
-                    spFromCurrency.selectedItem.toString(),
-                    spToCurrency.selectedItem.toString()
-                )
-            }
+        binding.btnConvert.setOnClickListener {
+            viewModel.convert(
+                binding.etEnterNumber.text.toString(),
+                binding.spFromCurrency.selectedItem.toString(),
+                binding.spToCurrency.selectedItem.toString()
+            )
+        }
 
-            lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.conversion.collect { currency ->
-                        when (currency) {
-                            is CurrencyEvent.Success -> {
-                                progressBar.visibility = View.INVISIBLE
-                                tvResult.text = currency.resultText
-                            }
+        binding.github.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, getString(R.string.github_url).toUri())
+            )
+        }
 
-                            is CurrencyEvent.Failure -> {
-                                progressBar.visibility = View.INVISIBLE
-                                tvResult.text = "Error when retrieving currencies.."
-                                materialDialog(
-                                    requireContext(), "ERROR", "It seems as though" +
-                                            " your exchange could not be completed. Consider trying again."
-                                )
-                            }
-
-                            is CurrencyEvent.Loading -> {
-                                progressBar.visibility = View.VISIBLE
-                            }
-
-                            else -> {
-                                Log.d(CURRENCY_FRAGMENT, "Currently at an empty state...")
-                            }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.conversion.collect { currency ->
+                    when (currency) {
+                        is CurrencyEvent.Success -> {
+                            binding.progressBar.visibility = View.INVISIBLE
+                            binding.tvResult.text = currency.resultText
                         }
+
+                        is CurrencyEvent.Failure -> {
+                            binding.progressBar.visibility = View.INVISIBLE
+                            binding.tvResult.text = currency.errorText
+                        }
+
+                        is CurrencyEvent.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
+
+                        CurrencyEvent.Empty -> binding.progressBar.visibility = View.INVISIBLE
                     }
                 }
             }
         }
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.isLoading.collect {
-                    Log.d(CURRENCY_FRAGMENT, "Loading currencies")
-                }
-            }
-        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
         _binding = null
+        super.onDestroyView()
     }
 
     companion object {

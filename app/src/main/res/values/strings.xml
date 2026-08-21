@@ -33,17 +33,24 @@
         <item>GBP</item>
         <item>KRW</item>
         <item>MYR</item>
-        <item>USD</item>
+        <item>TRY</item>
     </string-array>
-    <string name="currency_converter">Currency $</string>
-    <string name="an_easy_way_to_convert_currency">An easy way to convert currency from over 50 countries</string>
+    <string name="currency_converter">Currency
+        Converter</string>
+    <string name="an_easy_way_to_convert_currency">Exchange rates, without the noise.</string>
+    <string name="brand_label">GR SPLACK / 01</string>
     <string name="begin">Let\'s Begin</string>
-    <string name="choose_currency">Choose Currency:</string>
-    <string name="start_here">Start Here...</string>
-    <string name="from">From...</string>
-    <string name="to">To...</string>
-    <string name="enter_number">Enter Number:</string>
+    <string name="choose_currency">Convert currencies</string>
+    <string name="conversion_subtitle">Fast, clear exchange estimates in a few taps.</string>
+    <string name="start_here">Start here</string>
+    <string name="from">FROM</string>
+    <string name="to">TO</string>
+    <string name="enter_number">Enter amount</string>
+    <string name="amount_helper">Amount to convert</string>
+    <string name="result_label">ESTIMATED RESULT</string>
+    <string name="result_placeholder">Your converted amount will appear here.</string>
     <string name="convert">Convert</string>
-    <string name="github">https://github.com/getrighhttt</string>
+    <string name="github">github.com/getrighhttt</string>
+    <string name="github_url" translatable="false">https://github.com/getrighhttt</string>
     <string name="image">image</string>
 </resources>

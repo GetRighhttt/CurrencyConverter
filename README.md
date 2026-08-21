@@ -71,10 +71,6 @@ Run the unit tests and Android lint checks:
 ./gradlew test lintDebug
 ```
 
-## Demo
-
-https://github.com/user-attachments/assets/707d446d-3b00-47c2-aa78-1618bf320a03
-
 ## Contact
 
 Questions or comments: **stefanbusiness95@gmail.com**
